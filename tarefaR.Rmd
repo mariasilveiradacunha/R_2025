@@ -1,0 +1,105 @@
+---
+title: "tarefaR"
+output: html_document
+---
+
+"Trabalho 1
+Leonor Pereira, Diogo Matos, Madalena Reis, Maria Cunha, João Fialho, 
+Rafael Oliveira, Carolina Felício e António Bernardo"
+2025-09-08
+
+"pergunta 1"
+
+library(dplyr)
+library(tidyverse)
+
+dados <- relatorio_mei
+Top_CNAEs <- dados %>%
+  arrange(desc(TOTAL)) %>%
+  head(3)
+print(Top_CNAEs)
+
+
+"pergunta 2"
+total<- sum(dados$TOTAL)
+
+Concentração <- dados %>%
+  arrange(desc(TOTAL)) %>%
+  mutate(percentage = TOTAL/ total * 100)
+print(Concentração)
+
+
+"pergunta 3"
+
+"Em Duque de Caxias não há uma concentração muito forte em poucos CNAEs. 
+Apesar de alguns setores de serviços pessoais, comércio de vestuário e 
+saúde domiciliar aparecerem como mais frequentes, cada um representa menos 
+de 10% do total. Os 10 maiores CNAEs somam apenas cerca de 35-40% dos MEIs, 
+o que indica dispersão entre várias atividades."
+
+"Os três CNAEs mais representativos em Duque de Caxias são: 
+9602501 - Cabeleireiros, manicure e pedicure 
+4781400 - Comércio varejista de artigos do vestuário e acessórios 
+8712300 - Atividades de fornecimento de infraestrutura de apoio e assistência a pacientes no domicílio. 
+Embora estes setores estejam no topo do ranking, eles não concentram a maioria dos MEIs: 
+juntos representam apenas cerca de 16% do total, e mesmo os 10 maiores somam pouco mais de um terço. 
+Isso indica que a economia local? bem diversificada, com muitos pequenos negócios em diferentes áreas."
+
+"Ainda assim, o perfil faz sentido para a realidade socioeconómica do município. 
+Os serviços de beleza refletem uma forte demanda cultural e social, o comércio de vestuário acompanha 
+o consumo popular típico de uma região urbana populosa, e os serviços de saúde domiciliar podem estar 
+ligados ao envelhecimento populacional e à procura por soluções acessíveis de cuidado. Essa dispersão 
+mostra uma vocação empreendedora variada, baseada em atividades de comércio e serviços de proximidade, 
+coerente com as características da Baixada Fluminense."
+
+
+"pergunta 4"
+
+library(readxl)
+library(dplyr)
+
+dados <- read_excel("C:/Users/Maria Cunha/OneDrive - ISEG/Documents/Introdução ao R/DADOS.xlsx", sheet = "Folha 1 - relatorio_mei-3", skip = 1)
+
+top3 <- dados %>%
+  arrange(desc(TOTAL)) %>%
+  slice_head(n = 3)
+
+print(top3)
+
+total <- sum(dados$TOTAL)
+
+DADOS <- dados %>%
+  arrange(desc(TOTAL)) %>%
+  mutate(percentage = TOTAL / total * 100)
+print(DADOS)
+
+
+"No UF RJ, não há uma grande concentração muito expressiva em poucos CNAEs 
+(neste caso, nos 3 mais frequentes). Os 3 setores mais frequentes somam, 
+apenas, 15,87% do total dos dados. A concentração volta a não se verificar 
+quando os 10 CNAEs mais comuns somam 36,49% de todas as observações.
+Os 3 CNAEs mais comuns no estado do Rio de Janeiro são: (1) Cabeleireiros, 
+manicure e pedicure; (2) Comércio varejista de artigos de vestuário e 
+acessórios; (3) Fornecimento de alimentos preparados preponderantemente 
+para consumo domiciliar. Os CNAEs fazem bastante sentido para a economia 
+local do Rio de Janeiro. A forte presença de cabeleireiros, manicure e 
+pedicure reflete a importância da estética e dos serviços pessoais em uma 
+cidade turística e culturalmente voltada para a imagem. O segundo CNAE mais 
+comum está ligado ao grande setor do comércio, essencial em uma metrópole de 
+consumo e turismo. O último CNAE, e terceiro mais comum, faz igualmente 
+sentido, sendo o RJ uma cidade turística e de ritmo acelerado, pois há grande 
+procura por refeições prontas para entrega, impulsionada pela densidade urbana 
+e pela cultura de consumo via apps de delivery."
+
+
+"pergunta 5"
+
+"Ao analisar os três CNAEs mais comuns do Rio de Janeiro, podem surgir diversas 
+limitações, como dados desatualizados, falta de precisão e detalhes nas 
+informações, além da dificuldade de acesso a dados empresariais, principalmente 
+no caso de negócios informais. A heterogeneidade entre empresas do mesmo CNAE e 
+as mudanças na classificação também podem prejudicar a análise, assim como a 
+informalidade e os problemas de categorização de empresas com atividades 
+diversas. Além disso, a regionalidade e a falta de discriminação setorial 
+podem afetar a acuracidade dos dados, tornando difícil obter uma visão precisa 
+e comparativa do perfil econômico local."
